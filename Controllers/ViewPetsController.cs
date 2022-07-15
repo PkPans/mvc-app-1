@@ -21,6 +21,23 @@ namespace mymvc1.Controllers
             Pet.PetGender = "Male";
             Pet.PetAge = 5;
             return View(Pet);
+       }
+       public IActionResult DisplayMultiplePets()
+       {
+            var pets2 = new List<DisplayPetsModel>();
+            
+            var pet1 = new DisplayPetsModel();
+            pet1.PetName = "Jake";
+            pet1.PetType = "dog";
+            
+            var pet2 = new DisplayPetsModel();
+            pet2.PetName = "Bella";
+            pet2.PetType = "cat";
+            
+            pets2.Add(pet1);
+            pets2.Add(pet2);
+
+            return View(pets2);
        } 
     }
 }
