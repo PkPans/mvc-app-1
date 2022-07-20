@@ -12,8 +12,8 @@ namespace mymvc1.Controllers
 {
     public class ViewPetsController : Controller
     {
-       public IActionResult DisplayPets()
-       {
+        public IActionResult DisplayPets()
+        {
             var Pet = new DisplayPetsModel();
             Pet.PetName = "Jake";
             Pet.PetType = "dog";
@@ -21,23 +21,25 @@ namespace mymvc1.Controllers
             Pet.PetGender = "Male";
             Pet.PetAge = 5;
             return View(Pet);
-       }
-       public IActionResult DisplayMultiplePets()
-       {
-            var pets2 = new List<DisplayPetsModel>();
-            
-            var pet1 = new DisplayPetsModel();
-            pet1.PetName = "Jake";
-            pet1.PetType = "dog";
-            
-            var pet2 = new DisplayPetsModel();
-            pet2.PetName = "Bella";
-            pet2.PetType = "cat";
-            
-            pets2.Add(pet1);
-            pets2.Add(pet2);
+        }
+        public IActionResult DisplayMultiplePets()
+        {
+            DisplayPetsModel pet1 = new DisplayPetsModel();
+            pet1.PetName = "Mozart";
+            pet1.PetType = "Dog";
 
-            return View(pets2);
-       } 
+            var pet2 = new DisplayPetsModel();
+            pet2.PetName = "Pumpkin";
+            pet2.PetType = "Bitch";
+
+            List<DisplayPetsModel> list1 = new List<DisplayPetsModel>();
+            list1.Add(pet1);
+            list1.Add(pet2);
+
+            return View(list1);
+
+        }
     }
 }
+
+// create 2 pets objects, and store both peths in an array and in a list

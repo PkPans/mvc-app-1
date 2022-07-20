@@ -12,8 +12,9 @@ namespace mymvc1.Controllers
 {
     public class MyProfileController : Controller
     {
-       public IActionResult Display()
-       {
+        [HttpGet]// just for clarification
+        public IActionResult Display()
+        {
             var Person = new DisplayModel();
             Person.Name = "Gracia";
             Person.Location = "Fort Mill, SC";
@@ -22,6 +23,18 @@ namespace mymvc1.Controllers
             Person.Hobbies = "jogging";
             Person.PhoneNumber = 9547162737;
             return View(Person);
-       } 
+        }
+        
+        [HttpGet]
+        public IActionResult Create()
+        {
+            var createModel = new CreateModel();
+            return View(createModel);
+        }
+        [HttpPost]
+        public IActionResult Create(CreateModel createModel)
+        {
+            return View();
+        }
     }
 }

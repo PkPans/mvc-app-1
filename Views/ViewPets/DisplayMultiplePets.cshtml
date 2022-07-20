@@ -1,2 +1,17 @@
+@using mymvc1.Models.ViewPets;
 
+@model List<DisplayPetsModel>
 
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Pet Name</th>
+        <th>Pet Type</th>
+    </tr>
+    @foreach(var pet in Model)
+    {
+        <tr>
+            <td>@pet.PetName</td>
+            <td>@pet.PetType</td>
+        </tr>
+    }
+</table>
