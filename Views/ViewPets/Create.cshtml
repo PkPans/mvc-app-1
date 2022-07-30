@@ -1,0 +1,24 @@
+@model mymvc1.Models.ViewPets.CreateModel
+
+<form method="post">
+<h2>Create new pet:</h2>
+@Html.LabelFor(m=> m.Name)
+@Html.EditorFor(m=> m.Name)
+</br>
+@Html.LabelFor(m=> m.Type)
+@Html.EditorFor(m=> m.Type)
+</br>
+@Html.LabelFor(m=> m.Age)
+@Html.EditorFor(m=> m.Age)
+</br>
+@Html.LabelFor(m=> m.Allergies)
+@Html.EditorFor(m=> m.Allergies)
+</br>
+@Html.LabelFor(m=> m.OnwerName)
+@Html.EditorFor(m=> m.OnwerName)
+</br>
+@Html.LabelFor(m=> m.OwnerPhoneNumber)
+@Html.EditorFor(m=> m.OwnerPhoneNumber)
+</br>
+<button>Save</button>
+</form>

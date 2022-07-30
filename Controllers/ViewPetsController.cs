@@ -37,9 +37,22 @@ namespace mymvc1.Controllers
             list1.Add(pet2);
 
             return View(list1);
-
         }
+
+        [HttpGet]
+
+        public IActionResult Create()
+        {
+            var createModel = new CreateModel();
+            return View(createModel);
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateModel createModel)
+        {
+            return View();
+        }
+
     }
 }
 
-// create 2 pets objects, and store both peths in an array and in a list

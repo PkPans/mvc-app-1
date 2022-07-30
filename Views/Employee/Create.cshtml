@@ -1,0 +1,18 @@
+@model mymvc1.Models.Employee.CreateEmployeeModel
+
+<form method="post">
+    <h2>Create new employee:</h2> 
+    @Html.LabelFor(m => m.FirstName)
+    @Html.EditorFor(m => m.FirstName)
+    </br>
+    @Html.LabelFor(m => m.LastName)
+    @Html.EditorFor(m => m.LastName)
+    </br>
+    @Html.LabelFor(m => m.DateOfBirth)
+    @Html.EditorFor(m => m.DateOfBirth)
+    </br>
+    @Html.LabelFor(m => m.PhoneNumber)
+    @Html.EditorFor(m => m.PhoneNumber)
+    </br>
+    <button>Create</button>
+</form>
