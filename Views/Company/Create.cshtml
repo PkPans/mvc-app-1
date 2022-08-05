@@ -1,0 +1,15 @@
+@model mymvc1.Models.Company.CreateCompanyModel
+
+<form method="post">
+    <h2>Create new company:</h2> 
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+    </br>
+    @Html.LabelFor(m => m.Address)
+    @Html.EditorFor(m => m.Address)
+    </br>
+    @Html.LabelFor(m => m.PhoneNumber)
+    @Html.EditorFor(m => m.PhoneNumber)
+    </br>
+    <button>Create</button>
+</form>

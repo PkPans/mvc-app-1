@@ -1,6 +1,8 @@
 @model mymvc1.Models.Employee.DetailsEmployeeModel
 
-<h2>Employee Details:</h2> 
+<form method="post">
+@Html.HiddenFor(m => m.Id)
+<h2>Are you sure you want to delete?</h2> 
 @Html.LabelFor(m => m.FirstName)
 @Html.DisplayFor(m => m.FirstName)
 </br>
@@ -13,4 +15,6 @@
 @Html.LabelFor(m => m.PhoneNumber)
 @Html.DisplayFor(m => m.PhoneNumber)
 </br>
-<h4>@Html.ActionLink("Go Back","Index","Employee")</h4>
+<button type="submit" class="btn btn-success">Yes</button>
+@Html.ActionLink("Cancel","Index","Employee",null, new {@class="btn btn-danger"})
+</form>

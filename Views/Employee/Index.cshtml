@@ -1,0 +1,27 @@
+@model List<mymvc1.Models.Employee.DetailsEmployeeModel>
+
+<h2>Browse Employees</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date of Birth</th>
+        <th>Phone Number</th>
+    </tr>
+    @foreach(var employee in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink("Edit","Edit","Employee",new { id = employee.Id}, new {@class="btn btn-secondary"}) | 
+                @Html.ActionLink("View","Details","Employee",new { id = employee.Id}, new {@class="btn btn-info"}) |
+                @Html.ActionLink("Delete","Delete","Employee",new { id = employee.Id}, new {@class="btn btn-danger"})</td>
+            <td>@employee.FirstName</td>
+            <td>@employee.LastName</td>
+            <td>@employee.DateOfBirth</td>
+            <td>@employee.PhoneNumber</td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Add New Employee","Create","Employee",null, new {@class="btn btn-primary"})

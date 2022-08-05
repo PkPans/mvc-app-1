@@ -1,7 +1,9 @@
-@model mymvc1.Models.Employee.CreateEmployeeModel
+@model mymvc1.Models.Employee.EditEmployeeModel   
+
+<h2>Edit @Model.FirstName @Model.LastName</h2>
 
 <form method="post">
-    <h2>Create new employee:</h2> 
+    
     @Html.LabelFor(m => m.FirstName)
     @Html.EditorFor(m => m.FirstName)
     </br>
@@ -14,7 +16,7 @@
     @Html.LabelFor(m => m.PhoneNumber)
     @Html.EditorFor(m => m.PhoneNumber)
     </br>
-    <button>Create</button>
+    <button>Save</button>
 </form>
 
 <h4>@Html.ActionLink("Go Back","Index","Employee")</h4>

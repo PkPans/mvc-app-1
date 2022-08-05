@@ -37,35 +37,79 @@ namespace mymvc1.Controllers
             {
                 newEmployeeId = connection.ExecuteScalar<int>(@"
                     INSERT INTO Employees(FirstName, LastName, DateOfBirth, PhoneNumber)
-                    OUTPUT INSERTED.EmployeeId
+                    OUTPUT INSERTED.Id
                     VALUES(@FirstName, @LastName, @DateOfBirth, @PhoneNumber);
                 ", createEmployeeModel);
             }
             if(newEmployeeId > 0)
-                return RedirectToAction("Details", new { employeeId = newEmployeeId});
+                return RedirectToAction("Details", new { id = newEmployeeId});
             return View(createEmployeeModel);
         }
-        public IActionResult Details(int employeeId)
+        public IActionResult Details(int id)
         {
             var connectionString = _configuration.GetConnectionString("SqlConnection");
-            var employee = new CreateEmployeeModel();
+            var employee = new DetailsEmployeeModel();
             using(var connection = new SqlConnection(connectionString))
             {
-                employee = connection.QuerySingle<CreateEmployeeModel>("SELECT * FROM Employees WHERE EmployeeId = @EmployeeId", new { EmployeeId = employeeId});
+                employee = connection.QuerySingle<DetailsEmployeeModel>("SELECT * FROM Employees WHERE Id = @Id", new { Id = id});
             }
             return View(employee);
         }
         public IActionResult Index()
         {
-            return View();
+            var connectionString = _configuration.GetConnectionString("SqlConnection");
+            var employees = new List<DetailsEmployeeModel>();
+            using(var connection = new SqlConnection(connectionString))
+            {
+                employees = connection.Query<DetailsEmployeeModel>("SELECT * FROM Employees").ToList();
+            }
+            return View(employees);
         }
-        public IActionResult Edit(int employeeId)
+        public IActionResult Edit(int id)
         {
-            return View();
+            var connectionString = _configuration.GetConnectionString("SqlConnection");
+            var employee = new EditEmployeeModel();
+            using(var connection = new SqlConnection(connectionString))
+            {
+                employee = connection.QuerySingle<EditEmployeeModel>("SELECT * FROM Employees WHERE Id = @Id", new { Id = id});
+            }
+            return View(employee);
         }
-        public IActionResult Delete(int employeeId)
+        [HttpPost]
+        public IActionResult Edit(EditEmployeeModel editEmployeeModel)
         {
-            return View();
+            var connectionString = _configuration.GetConnectionString("SqlConnection");
+            using(var connection = new SqlConnection(connectionString))
+            {
+                var sql = @"UPDATE Employees SET FirstName = @FirstName, 
+                                        LastName = @LastName,
+                                        DateOfBirth = @DateOfBirth,
+                                        PhoneNumber = @PhoneNumber
+                                        WHERE Id = @Id";
+                connection.Execute(sql, editEmployeeModel);
+            }
+            return RedirectToAction("Details", new {id =  editEmployeeModel.Id});
+        }
+        public IActionResult Delete(int id)
+        {
+            var connectionString = _configuration.GetConnectionString("SqlConnection");
+            var employee = new DetailsEmployeeModel();
+            using(var connection = new SqlConnection(connectionString))
+            {
+                employee = connection.QuerySingle<DetailsEmployeeModel>("SELECT * FROM Employees WHERE Id = @Id", new { Id = id});
+            }
+            return View(employee);
+        }
+        [HttpPost]
+        public IActionResult Delete(DetailsEmployeeModel detailsEmployeeModel)
+        {
+            var connectionString = _configuration.GetConnectionString("SqlConnection");
+            var employee = new EditEmployeeModel();
+            using(var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute("DELETE FROM Employees WHERE Id = @Id", new { Id = detailsEmployeeModel.Id});
+            }
+            return RedirectToAction("Index");
         }
     }
 }
