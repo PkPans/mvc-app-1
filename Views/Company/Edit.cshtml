@@ -1,0 +1,19 @@
+@model mymvc1.Models.Company.EditCompanyModel   
+
+<h2>Edit @Model.Name @Model.Name</h2>
+
+<form method="post">
+    
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+    </br>
+    @Html.LabelFor(m => m.Address)
+    @Html.EditorFor(m => m.Address)
+    </br>
+    @Html.LabelFor(m => m.PhoneNumber)
+    @Html.EditorFor(m => m.PhoneNumber)
+    </br>
+    <button>Save</button>
+</form>
+
+<h4>@Html.ActionLink("Go Back","Index","Company")</h4>

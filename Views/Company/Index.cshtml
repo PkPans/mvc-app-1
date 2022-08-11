@@ -1,0 +1,25 @@
+@model List<mymvc1.Models.Company.DetailsCompanyModel>
+
+<h2>Browse Companies</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+    </tr>
+    @foreach(var company in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink("Edit","Edit","Company",new { id = company.Id}, new {@class="btn btn-secondary"}) | 
+                @Html.ActionLink("View","Details","Company",new { id = company.Id}, new {@class="btn btn-info"}) |
+                @Html.ActionLink("Delete","Delete","Company",new { id = company.Id}, new {@class="btn btn-danger"})</td>
+            <td>@company.Name</td>
+            <td>@company.Address</td>
+            <td>@company.PhoneNumber</td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Add New Company","Create","Company",null, new {@class="btn btn-primary"})

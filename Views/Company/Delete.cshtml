@@ -1,0 +1,17 @@
+@model mymvc1.Models.Company.DetailsCompanyModel
+
+<form method="post">
+@Html.HiddenFor(m => m.Id)
+<h2>Are you sure you want to delete?</h2> 
+@Html.LabelFor(m => m.Name)
+@Html.DisplayFor(m => m.Name)
+</br>
+@Html.LabelFor(m => m.Address)
+@Html.DisplayFor(m => m.Address)
+</br>
+@Html.LabelFor(m => m.PhoneNumber)
+@Html.DisplayFor(m => m.PhoneNumber)
+</br>
+<button type="submit" class="btn btn-success">Yes</button>
+@Html.ActionLink("Cancel","Index","Company",null, new {@class="btn btn-danger"})
+</form>
