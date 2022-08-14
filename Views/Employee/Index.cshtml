@@ -9,6 +9,7 @@
         <th>Last Name</th>
         <th>Date of Birth</th>
         <th>Phone Number</th>
+        <th>Company</th>
     </tr>
     @foreach(var employee in Model)
     {
@@ -20,6 +21,7 @@
             <td>@employee.LastName</td>
             <td>@employee.DateOfBirth</td>
             <td>@employee.PhoneNumber</td>
+            <td>@employee.CompanyName</td>
         </tr>
     }
 </table>
